@@ -14,7 +14,7 @@ interface Props {
 const CourseMobileSidebar = ({ course, progressCount }: Props) => {
   return (
     <Sheet>
-      <SheetTrigger className="lg:hidden pr-4 hover:opacity-75 transition-all">
+      <SheetTrigger className="lg:hidden pr-4 hover:opacity-75 transition-all bg-white z-[999]">
         <Menu />
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-white w-72">
