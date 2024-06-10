@@ -1,5 +1,4 @@
 import { db } from "@/lib/db";
-import React from "react";
 import { redirect } from "next/navigation";
 const WatchCourse = async ({ params }: { params: { courseId: string } }) => {
   const courseId = params.courseId;
