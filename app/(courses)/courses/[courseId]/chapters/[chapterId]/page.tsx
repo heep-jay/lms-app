@@ -35,7 +35,7 @@ const ChapterPages = async ({
   const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !!purchase && !userProgress?.isCompleted;
   return (
-    <div>
+    <div className="w-full overflow-x-hidden">
       {userProgress?.isCompleted && (
         <Banner
           variant="success"
