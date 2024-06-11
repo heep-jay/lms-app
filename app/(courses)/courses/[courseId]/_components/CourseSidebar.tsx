@@ -30,11 +30,11 @@ const CourseSidebar = async ({ course, progressCount }: Props) => {
   });
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm bg-white z-[999]">
-      <div className="p-8 flex flex-xol border-b">
+      <div className="p-8 flex flex-col border-b">
         <h1 className="font-semi-bold">{course.title}</h1>
         {purchase && (
           <div className="mt-10">
-            <CourseProgress variant="success" value={progressCount} size="sm"/>
+            <CourseProgress variant="success" value={progressCount} size="sm" />
           </div>
         )}
       </div>

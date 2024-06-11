@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Circle, PlayCircle, Lock } from "lucide-react";
+import {  PlayCircle, Lock,  CircleCheckBig } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
@@ -20,7 +20,7 @@ const CourseSidebarItem = ({
 }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
-  const Icon = isLocked ? Lock : isCompleted ? Circle : PlayCircle;
+  const Icon = isLocked ? Lock : isCompleted ? CircleCheckBig : PlayCircle;
   const isActive = pathname?.includes(id);
 
   const onClick = () => {
