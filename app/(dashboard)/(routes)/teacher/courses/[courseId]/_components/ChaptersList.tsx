@@ -27,7 +27,7 @@ const ChaptersList = ({ items, onEdit, onReorder }: Props) => {
   }, []);
   useEffect(() => {
     setChapters(items);
-  }, []);
+  }, [items]);
 
   if (!isMounted) {
     return null;
