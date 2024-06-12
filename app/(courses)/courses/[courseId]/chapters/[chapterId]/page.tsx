@@ -40,7 +40,7 @@ const ChapterPages = async ({
       {userProgress?.isCompleted && (
         <Banner
           variant="success"
-          label="You have succesfully completed this course"
+          label="You have succesfully completed this chapter"
         />
       )}
       {isLocked && (

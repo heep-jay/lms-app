@@ -2,6 +2,7 @@ import Mux from "@mux/mux-node";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { isTeacher } from "@/lib/teacher";
 
 const tokenId = process.env.MUX_TOKEN_ID!;
 const secretKey = process.env.MUX_TOKEN_SECRET!;
@@ -14,7 +15,7 @@ export async function DELETE(
   try {
     const { userId } = auth();
     const { courseId, chapterId } = params;
-    if (!userId) {
+    if (!userId || !isTeacher(userId)) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
     const course = await db.course.findUnique({
@@ -89,7 +90,7 @@ export async function PATCH(
     const { courseId, chapterId } = params;
     const { isPublished, ...values } = await req.json();
 
-    if (!userId) {
+    if (!userId || !isTeacher(userId)) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
     const course = await db.course.findUnique({
@@ -118,11 +119,12 @@ export async function PATCH(
           chapterId,
         },
       });
-      if (existinMuxData) {
-        await video.assets.delete(existinMuxData.assetId);
+      // existinMuxData.
+      if (existinMuxData?.assetId) {
+        await video.assets.delete(existinMuxData?.assetId);
         await db.muxData.delete({
           where: {
-            id: existinMuxData.id,
+            id: existinMuxData?.id,
           },
         });
       }
@@ -135,8 +137,8 @@ export async function PATCH(
       await db.muxData.create({
         data: {
           chapterId,
-          assetId: asset.id,
-          playbackId: asset.playback_ids?.[0].id,
+          assetId: asset?.id,
+          playbackId: asset?.playback_ids?.[0].id,
         },
       });
     }
